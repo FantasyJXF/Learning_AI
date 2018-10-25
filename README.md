@@ -1,2 +1,3 @@
 # Learning_AI
-Learning it
+
+Practice the instance on the book <Python with Deep Learning>
