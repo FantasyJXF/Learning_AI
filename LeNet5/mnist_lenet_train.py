@@ -2,16 +2,17 @@
 import os
 
 import tensorflow as tf
+import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
-import mnist_inference
+import mnist_lenet_inference
 
 # 配置神经网络的参数
 BATCH_SIZE = 100
 LEARNING_RATE_BASE = 0.8
 LEARNING_RATE_DECAY = 0.99
 REGULARIZATION_RATE = 0.0001
-TRAINING_STEPS = 30000
+TRAINING_STEPS = 5000
 MOVING_AVERAGE_DECAY = 0.99
 
 MODEL_SAVE_PATH = "./models"
@@ -20,13 +21,18 @@ MODEL_NAME = "model.ckpt"
 def train(mnist):
     # 定义输入输出placeholder
     x = tf.placeholder(
-        tf.float32, [None, mnist_inference.INPUT_NODE], name='x-input')
+        tf.float32,
+        [BATCH_SIZE,
+         mnist_lenet_inference.IMAGE_SIZE,
+         mnist_lenet_inference.IMAGE_SIZE,
+         mnist_lenet_inference.NUM_CHANNELS],
+         name='x-input')
     y_ = tf.placeholder(
-        tf.float32, [None, mnist_inference.OUTPUT_NODE], name='y-input')
+        tf.float32, [None, mnist_lenet_inference.OUTPUT_NODE], name='y-input')
     regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
     #  直接使用mnist_inference.py中定义的传播过程
-    y = mnist_inference.inference(x, regularizer)
+    y = mnist_lenet_inference.inference(x, False, regularizer)
     global_step = tf.Variable(0, trainable=False)
 
     # 定义损失函数,学习率,滑动平均操作以及训练过程
@@ -56,8 +62,14 @@ def train(mnist):
         # 在训练的过程中不在测试模型在验证数据上的表现,验证和测试的过程将会有一个独立的程序来完成
         for i in range(TRAINING_STEPS):
             xs, ys = mnist.train.next_batch(BATCH_SIZE)
+            reshaped_xs = np.reshape(xs, (
+                BATCH_SIZE,
+                mnist_lenet_inference.IMAGE_SIZE,
+                mnist_lenet_inference.IMAGE_SIZE,
+                mnist_lenet_inference.NUM_CHANNELS))
+
             _, loss_value, step = sess.run([train_op, loss, global_step],
-                                           feed_dict={x: xs, y_: ys})
+                                           feed_dict={x: reshaped_xs, y_: ys})
             # 每1000轮保存一次模型
             if i % 1000 == 0:
                 # 输出当前的训练情况
