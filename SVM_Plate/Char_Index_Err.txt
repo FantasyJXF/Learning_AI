@@ -1,0 +1,7 @@
+Seq    Image_Number
+1	245.jpg
+2	271.jpg
+3	367.jpg
+4	668.jpg
+5       668.jpg
+6       814.jpg
