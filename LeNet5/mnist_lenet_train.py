@@ -5,7 +5,7 @@ import tensorflow as tf
 import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
-import mnist_lenet_inference
+from LeNet5 import mnist_lenet_inference
 
 # 配置神经网络的参数
 BATCH_SIZE = 100
@@ -79,7 +79,7 @@ def train(mnist):
                 saver.save(sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME), global_step=global_step)
 
 def main(argv=None):
-    mnist = input_data.read_data_sets("./datasets/mnist", one_hot=True)
+    mnist = input_data.read_data_sets("../datasets/mnist", one_hot=True)
     train(mnist)
 
 
