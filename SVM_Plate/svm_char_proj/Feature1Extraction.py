@@ -31,7 +31,7 @@ def Feature1Extraction():
                     if (dst[i, j] == 1):
                         C[a + j] += 1
 
-            fd.write(str(k + 1) + '\n')
+            fd.write(str(k + 1) + '\t')
             for i in range(0, a + b - 1):
                 fd.write(str(C[i]) + ',')
             if k < 999:
