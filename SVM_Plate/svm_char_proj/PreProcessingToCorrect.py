@@ -8,14 +8,14 @@ import numpy as np
 from skimage import filters,io
 import matplotlib.pyplot as plt
 
-filename = "Char_Index.txt"
-INPUT_DIR = "Char_Image"
-OUTPUT_DIR = "Char_Image_Binary"
+filename = "../datasets/Char_Index.txt"
+INPUT_DIR = "../datasets/Char_Image"
+OUTPUT_DIR = "../outputs/Char_Image_Binary"
 
 def PreProcessingToCorrect():
     input1_ = []
     input2_ = []
-    with open("Char_Index_Err.txt") as file_idx_err:
+    with open("../datasets/Char_Index_Err.txt") as file_idx_err:
         while True:
             # 整行读取数据
             lines = file_idx_err.readline()

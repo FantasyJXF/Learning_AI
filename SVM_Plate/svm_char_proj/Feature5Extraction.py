@@ -8,10 +8,10 @@ import numpy as np
 from skimage import filters,io
 #import matplotlib.pyplot as plt
 
-OUTPUT_DIR = "Char_Image_Binary"
+OUTPUT_DIR = "../outputs/Char_Image_Binary"
 
 def Feature5Extraction():
-    with open("feature5.txt", 'w+') as fd:
+    with open("../outputs/feature5.txt", 'w+') as fd:
         for k in range(0, 1000):
             path = os.path.join(OUTPUT_DIR, str(k + 1) + '.jpg')
             image = io.imread(path)

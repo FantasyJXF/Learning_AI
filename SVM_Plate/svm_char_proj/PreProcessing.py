@@ -8,9 +8,9 @@ import numpy as np
 from skimage import filters,io
 import matplotlib.pyplot as plt
 
-filename = "Char_Index.txt"
-INPUT_DIR = "Char_Image"
-OUTPUT_DIR = "Char_Image_Binary"
+filename = "../datasets/Char_Index.txt"
+INPUT_DIR = "../datasets/Char_Image"
+OUTPUT_DIR = "../outputs/Char_Image_Binary"
 
 def PreProcessing():
     input1 = []
@@ -61,6 +61,8 @@ def PreProcessing():
                 for j in range(0, b):
                     # 将每一个像素的值反向,转换成黑底白字
                     dst[i, j] = 1 - dst[i, j]
+        if not os.path.exists(OUTPUT_DIR):
+            os.mkdir(OUTPUT_DIR)
         path_out = os.path.join(OUTPUT_DIR, str(k + 1) + ".jpg")
         dst = dst.astype(np.uint8) * 255
         io.imsave(path_out, dst)

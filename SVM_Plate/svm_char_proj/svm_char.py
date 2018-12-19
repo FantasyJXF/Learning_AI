@@ -1,10 +1,10 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from SVM_Plate import PreProcessing, PreProcessingToCorrect, \
+from SVM_Plate.svm_char_proj import PreProcessing, PreProcessingToCorrect, \
                       Feature1Extraction, Feature2Extraction,\
                       Feature3Extraction, Feature4Extraction,\
-                      Feature5Extraction, SVM_Training
+                      Feature5Extraction
 
 def main(argv=None):
     PreProcessing.PreProcessing()  # 图像预处理,把要处理的图像转成二值图
@@ -15,7 +15,6 @@ def main(argv=None):
     Feature4Extraction.Feature4Extraction()    # 提取特征4, 为区域密度,区域大小为6*6
     Feature5Extraction.Feature5Extraction()    # 提取特征5, 为每一行和每一列的线段数目
     # Feature6Extraction.Feature6Extraction()    # 提取特征6, 为字符左右上下与边界的距离
-    SVM_Training.SVM_Training()
 
 if __name__ == "__main__":
     main()
