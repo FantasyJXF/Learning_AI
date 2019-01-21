@@ -4,7 +4,7 @@ import os
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
-from mnist_first import mnist_inference
+from TensorFlow_Practices.tf_mnist import mnist_inference
 
 # 配置神经网络的参数
 BATCH_SIZE = 100
@@ -14,7 +14,8 @@ REGULARIZATION_RATE = 0.0001
 TRAINING_STEPS = 5000
 MOVING_AVERAGE_DECAY = 0.99
 
-MODEL_SAVE_PATH = "./models"
+DATA_SRC = "../../datasets/mnist"
+MODEL_SAVE_PATH = "../models"
 MODEL_NAME = "model.ckpt"
 
 def train(mnist):
@@ -86,7 +87,7 @@ def train(mnist):
         writer.close()
 
 def main(argv=None):
-    mnist = input_data.read_data_sets("../datasets/mnist", one_hot=True)
+    mnist = input_data.read_data_sets(DATA_SRC, one_hot=True)
     train(mnist)
 
 
