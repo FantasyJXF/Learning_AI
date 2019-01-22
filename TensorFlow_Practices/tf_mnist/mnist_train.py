@@ -56,6 +56,10 @@ def train(mnist):
         with tf.control_dependencies([train_step, variables_averages_op]):
             train_op = tf.no_op(name='train')
 
+        # 初始化TensroFlow持久化类
+        saver = tf.train.Saver()
+
+        # 初始化TensroBoard
         writer = tf.summary.FileWriter("tensorboard_log", tf.get_default_graph())
 
         with tf.Session() as sess:
@@ -79,7 +83,9 @@ def train(mnist):
                                                    run_metadata=run_metadata)
                     # 将节点在运行时的信息写入日志文件
                     writer.add_run_metadata(run_metadata, tag=("tag%d" % i), global_step=i)
-
+                    saver.save(
+                        sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME),
+                        global_step=global_step)
                     # 输出当前的训练情况
                     print("After %d training step(s), loss on training batch is %g." % (step, loss_value))
                 else:

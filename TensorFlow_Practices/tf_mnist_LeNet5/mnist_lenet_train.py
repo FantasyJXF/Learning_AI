@@ -4,34 +4,34 @@ import os
 import tensorflow as tf
 import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
-
-from LeNet5 import mnist_lenet_inference
+from TensorFlow_Practices.tf_mnist_LeNet5 import mnist_lenet_inference
 
 # 配置神经网络的参数
 BATCH_SIZE = 100
-LEARNING_RATE_BASE = 0.8
+LEARNING_RATE_BASE = 0.01
 LEARNING_RATE_DECAY = 0.99
 REGULARIZATION_RATE = 0.0001
-TRAINING_STEPS = 5000
+TRAINING_STEPS = 30000
 MOVING_AVERAGE_DECAY = 0.99
 
 MODEL_SAVE_PATH = "./models"
 MODEL_NAME = "model.ckpt"
+DATA_SRC = "../../datasets/mnist"
 
 def train(mnist):
     # 定义输入输出placeholder
-    x = tf.placeholder(
-        tf.float32,
-        [BATCH_SIZE,
-         mnist_lenet_inference.IMAGE_SIZE,
-         mnist_lenet_inference.IMAGE_SIZE,
-         mnist_lenet_inference.NUM_CHANNELS],
-         name='x-input')
-    y_ = tf.placeholder(
-        tf.float32, [None, mnist_lenet_inference.OUTPUT_NODE], name='y-input')
+    x = tf.placeholder(tf.float32, [
+            BATCH_SIZE,
+            mnist_lenet_inference.IMAGE_SIZE,
+            mnist_lenet_inference.IMAGE_SIZE,
+            mnist_lenet_inference.NUM_CHANNELS],
+        name='x-input')
+    y_ = tf.placeholder(tf.float32, 
+            [None, mnist_lenet_inference.OUTPUT_NODE], 
+        name='y-input')
     regularizer = tf.contrib.layers.l2_regularizer(REGULARIZATION_RATE)
 
-    #  直接使用mnist_inference.py中定义的传播过程
+    #  直接使用mnist_lenet_inference.py中定义的传播过程
     y = mnist_lenet_inference.inference(x, False, regularizer)
     global_step = tf.Variable(0, trainable=False)
 
@@ -48,7 +48,8 @@ def train(mnist):
         LEARNING_RATE_BASE,
         global_step,
         mnist.train.num_examples / BATCH_SIZE,
-        LEARNING_RATE_DECAY)
+        LEARNING_RATE_DECAY,
+        staircase=True)
     train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
     with tf.control_dependencies([train_step, variables_averages_op]):
@@ -62,12 +63,10 @@ def train(mnist):
         # 在训练的过程中不在测试模型在验证数据上的表现,验证和测试的过程将会有一个独立的程序来完成
         for i in range(TRAINING_STEPS):
             xs, ys = mnist.train.next_batch(BATCH_SIZE)
-            reshaped_xs = np.reshape(xs, (
-                BATCH_SIZE,
-                mnist_lenet_inference.IMAGE_SIZE,
-                mnist_lenet_inference.IMAGE_SIZE,
-                mnist_lenet_inference.NUM_CHANNELS))
-
+            reshaped_xs = np.reshape(xs, (BATCH_SIZE,
+                                          mnist_lenet_inference.IMAGE_SIZE,
+                                          mnist_lenet_inference.IMAGE_SIZE,
+                                          mnist_lenet_inference.NUM_CHANNELS))
             _, loss_value, step = sess.run([train_op, loss, global_step],
                                            feed_dict={x: reshaped_xs, y_: ys})
             # 每1000轮保存一次模型
@@ -79,7 +78,7 @@ def train(mnist):
                 saver.save(sess, os.path.join(MODEL_SAVE_PATH, MODEL_NAME), global_step=global_step)
 
 def main(argv=None):
-    mnist = input_data.read_data_sets("../datasets/mnist", one_hot=True)
+    mnist = input_data.read_data_sets(DATA_SRC, one_hot=True)
     train(mnist)
 
 

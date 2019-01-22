@@ -54,7 +54,8 @@ def inference(input_tensor, train, regularizer):
 
     # 实现第四层池化层
     with tf.name_scope("layer4-pool2"):
-        pool2 = tf.nn.max_pool(relu2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")
+        pool2 = tf.nn.max_pool(
+            relu2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")
         '''
         将第四层池化层的输出转化为第五层全连接层的输入格式
         第四层的输出为7*7*64的矩阵, 第五层全连接层的输入格式为向量
@@ -63,7 +64,7 @@ def inference(input_tensor, train, regularizer):
         # pool_shape[0]为一个Batch中数据的个数
         nodes = pool_shape[1] * pool_shape[2] * pool_shape[3]
         # 将第四层的输出编程一个batch的向量
-        reshaped = tf.reshape(pool2, [pool_shape[0], nodes])
+        reshaped = tf.reshape(pool2, [-1, nodes])
 
     # 实现第五层全连接层
     with tf.variable_scope("layer5-fc1"):
