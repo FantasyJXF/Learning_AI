@@ -1,5 +1,7 @@
 # Byte-compiled / optimized / DLL files
+saved_model/
 weights/
+frozen_darknet_yolov3_model.pb
 __pycache__/
 *.py[cod]
 *$py.class

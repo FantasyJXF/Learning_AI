@@ -6,14 +6,14 @@ import yolo_v3
 import yolo_v3_tiny
 from PIL import Image, ImageDraw
 
-from utils import load_weights, load_coco_names, detections_boxes, freeze_graph
+from YOLO.YOLOv3.utils import load_weights, load_coco_names, detections_boxes, freeze_graph
 
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string(
     'class_names', 'coco.names', 'File with class names')
 tf.app.flags.DEFINE_string(
-    'weights_file', 'yolov3.weights', 'Binary file with detector weights')
+    'weights_file', './weights/yolov3.weights', 'Binary file with detector weights')
 tf.app.flags.DEFINE_string(
     'data_format', 'NCHW', 'Data format: NCHW (gpu only) / NHWC')
 tf.app.flags.DEFINE_string(

@@ -20,7 +20,7 @@ To run demo type this in the command line:
         1. Full weights: `wget https://pjreddie.com/media/files/yolov3.weights`
         1. Tiny weights: `wget https://pjreddie.com/media/files/yolov3-tiny.weights` 
     2. Run `python ./convert_weights.py` and `python ./convert_weights_pb.py`        
-3. Run `python ./demo.py --input_img <path-to-image> --output_img <name-of-output-image> --frozen_model <path-to-frozen-model>`
+3. Run `python ./run_yolov3.py --input_img <path-to-image> --output_img <name-of-output-image> --frozen_model <path-to-frozen-model>`
 
 
 ####Optional Flags
@@ -46,7 +46,7 @@ To run demo type this in the command line:
         1. Use yolov3-tiny
     5. `--output_graph`
         1. Location to write the output .pb graph to
-3. demo.py
+3. run_yolov3.py
     1. `--class_names`
         1. Path to the class names file
     2. `--weights_file`

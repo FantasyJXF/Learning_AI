@@ -74,8 +74,6 @@ def darknet(images, n_last_channels=425):
                  activation=None, use_bias=True, name="conv_dec")
     return net
 
-
-
 if __name__ == "__main__":
     x = tf.random_normal([1, 416, 416, 3])
     model = darknet(x)

@@ -5,14 +5,14 @@ import tensorflow as tf
 import yolo_v3
 import yolo_v3_tiny
 
-from utils import load_coco_names, load_weights
+from YOLO.YOLOv3.utils import load_coco_names, load_weights
 
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string(
     'class_names', 'coco.names', 'File with class names')
 tf.app.flags.DEFINE_string(
-    'weights_file', 'yolov3.weights', 'Binary file with detector weights')
+    'weights_file', './weights/yolov3.weights', 'Binary file with detector weights')
 tf.app.flags.DEFINE_string(
     'data_format', 'NCHW', 'Data format: NCHW (gpu only) / NHWC')
 tf.app.flags.DEFINE_bool(
