@@ -9,3 +9,5 @@
 ## Some Common Applications
 
 1. Plate Recognition
+2. YOLO series
+3. Neural Style Transfer
