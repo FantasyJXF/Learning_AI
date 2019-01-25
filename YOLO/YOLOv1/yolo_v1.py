@@ -37,6 +37,7 @@ class Yolo(object):
         self.sess = tf.Session()
         self._build_net()
         self._build_detector()
+        # download URL : https://drive.google.com/file/d/0B2JbaJSrWLpza08yS2FSUnV2dlE/view
         self._load_weights(weights_file)
 
     def _build_net(self):

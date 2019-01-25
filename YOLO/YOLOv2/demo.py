@@ -31,6 +31,7 @@ detection_feat = darknet(images)
 feat_sizes = input_size[0] // 32, input_size[1] // 32
 detection_results = decode(detection_feat, feat_sizes, len(class_names), anchors)
 
+# download URL : https://pan.baidu.com/s/1mrM95_wz6LTvIOZBHDxsWQ
 checkpoint_path = "./checkpoint_dir/yolo2_coco.ckpt"
 saver = tf.train.Saver()
 with tf.Session() as sess:
