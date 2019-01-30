@@ -1,2 +1,0 @@
-./result/images/test1.png 324 150 437 294
-./result/images/tets2.png 273 99 460 345

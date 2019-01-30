@@ -50,9 +50,9 @@ def parse_args():
     parser.add_argument('--random_order', 
         help='Shuffles the order of images to enable alignment using multiple processes.', action='store_true')
     parser.add_argument('--gpu_memory_fraction', type=float,
-        help='Upper bound on the amount of GPU memory that will be used by the process.', default=1.0)
+        help='Upper bound on the amount of GPU memory that will be used by the process.', default=0.8)
     parser.add_argument('--detect_multiple_faces', type=bool,
-                        help='Detect and align multiple faces per image.', default=False)
+                        help='Detect and align multiple faces per image.', default=True)
 
     return check_args(parser.parse_args())
 
@@ -62,12 +62,6 @@ def check_args(args):
         assert os.path.exists(args.input_dir)
     except:
         print('There is no such path%s'%args.input_dir)
-        return None
-
-    try:
-        assert os.path.exists(args.output_dir)
-    except:
-        print('There is no such path%s'%args.output_dir)
         return None
 
     return args
