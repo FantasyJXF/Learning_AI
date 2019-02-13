@@ -1,3 +1,5 @@
 # ignore all except .gitignore file
-*
+20180402*
+20170512*
+
 !.gitignore
