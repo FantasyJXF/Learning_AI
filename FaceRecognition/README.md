@@ -8,10 +8,12 @@
 
 * 中心损失 Center Loss
 
+* ArcLoss(STOA)
 
 ## 参考
 
 * Papers
-  * MTCNN_paper
+  * MTCNN - Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks
   * FaceNet - A Unified Embedding for Face Recognition and Clustering
-  * A Discriminative Feature Learning Approach for Deep Face Recognition
+  * Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition
+  * ArcFace - Additive Angular Margin Loss for Deep Face Recognition
