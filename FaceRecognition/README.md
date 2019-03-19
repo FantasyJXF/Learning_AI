@@ -12,8 +12,16 @@
 
 ## 参考
 
-* Papers
+### Papers
+
+* 人脸检测
   * MTCNN - Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks
+  * WIDER FACE - A Face Detection Benchmark
+  * Landmarks - Deep learning face attributes in the wild
+* 人脸识别
   * FaceNet - A Unified Embedding for Face Recognition and Clustering
+  * Sphereface - Deep hypersphere embedding for face recognition
+  * CosFace - Large Margin Cosine Loss for Deep Face Recognition
+  * AM-Softmax - Additive margin softmax for face verification
   * Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition
   * ArcFace - Additive Angular Margin Loss for Deep Face Recognition
