@@ -23,7 +23,7 @@ import facenet
 image_size = 200 #don't need equal to real image size, but this value should not small than this
 modeldir = '/home/jxf/Learning_AI/FaceRecognition/models/20170512-110547/20170512-110547.pb' #change to your model dir
 image_name1 = '/home/jxf/Learning_AI/FaceRecognition/datasets/casia_mtcnnpy_182/0000105/006_0.png' #change to your image name
-image_name2 = '/home/jxf/Learning_AI/FaceRecognition/datasets/casia_mtcnnpy_182/0000105/010_0.png' #change to your image name
+image_name2 = '/home/jxf/Learning_AI/FaceRecognition/datasets/casia_mtcnnpy_182/0000107/004_0.png' #change to your image name
 
 print('建立facenet embedding模型')
 tf.Graph().as_default()
