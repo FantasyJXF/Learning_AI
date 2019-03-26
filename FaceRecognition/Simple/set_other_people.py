@@ -4,16 +4,16 @@ import os
 import cv2
 import dlib
  
-input_dir = './lfw_dataset'
+input_dir = '../datasets/lfw'
 output_dir = './other_faces'
 size = 64
  
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
- 
+
 #使用dlib自带的frontal_face_detector作为我们的特征提取器
 detector = dlib.get_frontal_face_detector()
- 
+
 index = 1
 for (path, dirnames, filenames) in os.walk(input_dir):
     for filename in filenames:
@@ -26,7 +26,7 @@ for (path, dirnames, filenames) in os.walk(input_dir):
             gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             # 使用detector进行人脸检测 dets为返回的结果
             dets = detector(gray_img, 1)
- 
+
             #使用enumerate 函数遍历序列中的元素以及它们的下标
             #下标i即为人脸序号
             #left：人脸左边距离图片左边界的距离 ；right：人脸右边距离图片左边界的距离 
@@ -44,7 +44,7 @@ for (path, dirnames, filenames) in os.walk(input_dir):
                 # 保存图片
                 cv2.imwrite(output_dir+'/'+str(index)+'.jpg', face)
                 index += 1
- 
+
             key = cv2.waitKey(30) & 0xff
             if key == 27:
                 sys.exit(0)
