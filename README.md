@@ -11,3 +11,5 @@
 1. Plate Recognition
 2. YOLO series
 3. Neural Style Transfer
+4. Faster R-CNN
+5. Face Recognition
