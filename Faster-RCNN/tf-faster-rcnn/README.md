@@ -122,7 +122,7 @@ If you find it useful, the ``data/cache`` folder created on my side is also shar
   cd ../../..
   ```
 
-3. Demo for testing on custom images
+3. **Demo** for testing on custom images
   ```Shell
   # at repository root
   GPU_ID=0
